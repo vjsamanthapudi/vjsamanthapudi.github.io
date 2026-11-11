@@ -1,0 +1,71 @@
+---
+import { NAV, SITE } from '@/site.config';
+
+const { pathname } = Astro.url;
+const isCurrent = (href: string) => pathname === href || pathname.startsWith(href);
+---
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="/" aria-label={`${SITE.name}, home`}>
+      <span class="brand-mark">{SITE.brand}</span>
+      <span class="brand-tag">{SITE.tagline}</span>
+    </a>
+    <nav aria-label="Main">
+      {NAV.map(({ label, href }) => (
+        <a href={href} aria-current={isCurrent(href) ? 'page' : undefined}>
+          {label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 20px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    font-family: var(--font-mono);
+    text-decoration: none;
+  }
+
+  .brand-mark {
+    color: var(--fg);
+    font-weight: 700;
+  }
+
+  .brand-tag {
+    color: var(--accent);
+    font-size: 14px;
+  }
+
+  nav {
+    display: flex;
+    gap: 20px;
+  }
+
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  nav a:hover,
+  nav a[aria-current='page'] {
+    color: var(--accent);
+  }
+</style>

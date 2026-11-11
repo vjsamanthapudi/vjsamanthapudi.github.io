@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Build output and generated types
+dist/
+.astro/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+
+# OS and editor
+.DS_Store
+.idea/
+
+# Local scratch notes
+/content.md

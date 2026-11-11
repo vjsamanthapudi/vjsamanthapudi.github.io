@@ -1,0 +1,39 @@
+---
+import type { Project } from '@/lib/content';
+
+interface Props {
+  status: Project['data']['status'];
+}
+
+const LABELS: Record<Props['status'], string> = {
+  idea: 'Idea',
+  active: 'In progress',
+  shipped: 'Shipped',
+  paused: 'Paused',
+};
+
+const { status } = Astro.props;
+---
+
+<span class="badge" data-status={status}>
+  {LABELS[status]}
+</span>
+
+<style>
+  .badge {
+    display: inline-block;
+    padding: 1px 8px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .badge[data-status='active'],
+  .badge[data-status='shipped'] {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+</style>

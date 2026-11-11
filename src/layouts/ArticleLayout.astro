@@ -1,0 +1,45 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  backHref: string;
+  backLabel: string;
+}
+
+const { title, description, backHref, backLabel } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} type="article">
+  <article>
+    <header class="page-head">
+      <p class="eyebrow">
+        <a href={backHref}>&larr; {backLabel}</a>
+      </p>
+      <h1>{title}</h1>
+      <p class="lead">{description}</p>
+      <div class="meta mono muted">
+        <slot name="meta" />
+      </div>
+    </header>
+    <div class="prose">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .eyebrow a {
+    text-decoration: none;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 14px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+</style>
