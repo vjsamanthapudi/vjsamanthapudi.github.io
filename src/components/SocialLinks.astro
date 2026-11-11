@@ -1,0 +1,31 @@
+---
+import { SOCIAL } from '@/site.config';
+---
+
+<ul class="social">
+  {SOCIAL.map(({ label, handle, href }) => (
+    <li>
+      <span class="mono muted">{label}</span>
+      <a href={href}>{handle}</a>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .social {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 16px;
+    padding: 6px 0;
+  }
+
+  a {
+    overflow-wrap: anywhere;
+  }
+</style>

@@ -1,0 +1,70 @@
+---
+import StatusBadge from '@/components/StatusBadge.astro';
+import type { Project } from '@/lib/content';
+
+interface Props {
+  projects: Project[];
+}
+
+const { projects } = Astro.props;
+---
+
+{projects.length === 0 ? (
+  <p class="muted">Still planning. Projects will show up here as I start building them.</p>
+) : (
+  <ul class="project-list">
+    {projects.map((project) => (
+      <li>
+        <div class="head">
+          <a class="title" href={`/projects/${project.id}/`}>
+            {project.data.title}
+          </a>
+          <StatusBadge status={project.data.status} />
+        </div>
+        <p class="muted">{project.data.description}</p>
+        {project.data.stack.length > 0 && (
+          <p class="stack mono muted">{project.data.stack.join(' · ')}</p>
+        )}
+      </li>
+    ))}
+  </ul>
+)}
+
+<style>
+  .project-list {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    padding: 14px 16px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px 12px;
+  }
+
+  .title {
+    font-weight: 600;
+  }
+
+  p {
+    margin: 4px 0 0;
+    font-size: 15px;
+  }
+
+  .stack {
+    margin-top: 8px;
+    font-size: 13px;
+  }
+</style>

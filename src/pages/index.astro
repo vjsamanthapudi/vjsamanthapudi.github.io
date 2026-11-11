@@ -1,0 +1,46 @@
+---
+import PostList from '@/components/PostList.astro';
+import ProjectList from '@/components/ProjectList.astro';
+import SocialLinks from '@/components/SocialLinks.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getPosts, getProjects } from '@/lib/content';
+import { SITE } from '@/site.config';
+
+const LATEST_POSTS = 5;
+const LATEST_PROJECTS = 3;
+
+const posts = (await getPosts()).slice(0, LATEST_POSTS);
+const projects = (await getProjects()).slice(0, LATEST_PROJECTS);
+---
+
+<BaseLayout>
+  <section class="page-head">
+    <p class="eyebrow">{SITE.tagline}</p>
+    <h1>{SITE.name}</h1>
+    <p class="lead">
+      A place to build projects powered by LLMs and show how each one was made. Also here: blog
+      posts, ideas I'm thinking through, and the occasional sci-fi idea.
+    </p>
+  </section>
+
+  <section class="section" aria-labelledby="latest-posts">
+    <div class="section-head">
+      <h2 id="latest-posts">Latest notes</h2>
+      {posts.length > 0 && <a href="/blog/">All posts &rarr;</a>}
+    </div>
+    <PostList posts={posts} />
+  </section>
+
+  <section class="section" aria-labelledby="projects">
+    <div class="section-head">
+      <h2 id="projects">Projects</h2>
+      {projects.length > 0 && <a href="/projects/">All projects &rarr;</a>}
+    </div>
+    <ProjectList projects={projects} />
+  </section>
+
+  <section class="section" aria-labelledby="contact">
+    <h2 id="contact">Contact</h2>
+    <SocialLinks />
+  </section>
+</BaseLayout>

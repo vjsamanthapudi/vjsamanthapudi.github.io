@@ -1,0 +1,65 @@
+---
+import FormattedDate from '@/components/FormattedDate.astro';
+import type { Post } from '@/lib/content';
+
+interface Props {
+  posts: Post[];
+}
+
+const { posts } = Astro.props;
+---
+
+{posts.length === 0 ? (
+  <p class="muted">No posts yet. Notes will show up here as I write them.</p>
+) : (
+  <ul class="post-list">
+    {posts.map((post) => (
+      <li>
+        <span class="mono muted">
+          <FormattedDate date={post.data.pubDate} />
+        </span>
+        <div>
+          <a class="title" href={`/blog/${post.id}/`}>
+            {post.data.title}
+          </a>
+          <p class="muted">{post.data.description}</p>
+        </div>
+      </li>
+    ))}
+  </ul>
+)}
+
+<style>
+  .post-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 4px 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  li:last-child {
+    border-bottom: 0;
+  }
+
+  .title {
+    font-weight: 600;
+  }
+
+  p {
+    margin: 2px 0 0;
+    font-size: 15px;
+  }
+
+  @media (max-width: 520px) {
+    li {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

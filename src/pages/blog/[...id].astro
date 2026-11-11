@@ -1,0 +1,35 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { render } from 'astro:content';
+import FormattedDate from '@/components/FormattedDate.astro';
+import ArticleLayout from '@/layouts/ArticleLayout.astro';
+import { getPosts, type Post } from '@/lib/content';
+
+export const getStaticPaths = (async () => {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const { title, description, pubDate, updatedDate, tags } = post.data;
+const { Content } = await render(post);
+---
+
+<ArticleLayout title={title} description={description} backHref="/blog/" backLabel="Blog">
+  <Fragment slot="meta">
+    <FormattedDate date={pubDate} />
+    {updatedDate && (
+      <span>
+        Updated <FormattedDate date={updatedDate} />
+      </span>
+    )}
+    {tags.map((tag) => (
+      <span>#{tag}</span>
+    ))}
+  </Fragment>
+  <Content />
+</ArticleLayout>
