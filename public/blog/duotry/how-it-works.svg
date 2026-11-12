@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 350" role="img" aria-labelledby="t d">
+  <title id="t">How DuoTry works</title>
+  <desc id="d">Four inputs on the left: a photo of you, your outfit, a photo of your partner, and your partner's outfit. They flow into DuoTry, which produces one picture on the right of both people wearing the outfits side by side.</desc>
+  <style>
+    :root {
+      --fg: #e6e8ee;
+      --muted: #9aa3b5;
+      --accent: #6ee7b7;
+      --line: #2e3548;
+      --node: #151924;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --fg: #1a1d27;
+        --muted: #5b6475;
+        --accent: #047857;
+        --line: #cfd4de;
+        --node: #ffffff;
+      }
+    }
+    text {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      font-size: 14px;
+      fill: var(--muted);
+      text-anchor: middle;
+    }
+    .result-label { fill: var(--accent); font-weight: 600; font-size: 15px; }
+    .photo { fill: #efe7dc; }
+    .tile-edge { fill: none; stroke: var(--line); stroke-width: 1.5; }
+    .frame-edge { fill: none; stroke: var(--accent); stroke-width: 2.5; }
+    .skin { fill: #c98f6b; }
+    .hair { fill: #2a1b14; }
+    .tee { fill: #9aa0aa; }
+    .top { fill: #a9a3b8; }
+    .jeans { fill: #5a6577; }
+    .maroon { fill: #7b1e3a; }
+    .emerald { fill: #0f6b57; }
+    .gold { fill: #d4a640; }
+    .gold-line { stroke: #d4a640; stroke-width: 2.5; fill: none; }
+    .cream { fill: #d9cdb0; }
+    .shadow { fill: #000; opacity: 0.12; }
+    .hanger { fill: none; stroke: #8a8172; stroke-width: 2.5; stroke-linecap: round; }
+    .flow { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 3 7; animation: flow 1.2s linear infinite; }
+    .node { fill: var(--node); stroke: var(--accent); stroke-width: 2; }
+    .spark { fill: var(--accent); transform-origin: 275px 165px; animation: pulse 2s ease-in-out infinite; }
+    .arrowhead { fill: var(--accent); }
+    .before { opacity: 0; animation: before 9s ease-in-out infinite; }
+    .after { animation: after 9s ease-in-out infinite; }
+    @keyframes flow { to { stroke-dashoffset: -20; } }
+    @keyframes pulse { 0%, 100% { transform: scale(0.8); } 50% { transform: scale(1.15); } }
+    @keyframes before { 0%, 6% { opacity: 0; } 12%, 22% { opacity: 1; } 30%, 100% { opacity: 0; } }
+    @keyframes after { 0%, 6% { opacity: 1; } 12%, 22% { opacity: 0; } 30%, 100% { opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) {
+      .flow, .spark, .before, .after { animation: none; }
+    }
+  </style>
+
+  <defs>
+    <clipPath id="clip-a"><rect x="10" y="20" width="100" height="130" rx="8" /></clipPath>
+    <clipPath id="clip-c"><rect x="10" y="190" width="100" height="130" rx="8" /></clipPath>
+
+    <!-- Him: shared head, then two outfits. All drawn in a 100 x 200 box. -->
+    <g id="him-head">
+      <rect class="skin" x="45" y="40" width="10" height="10" />
+      <circle class="skin" cx="50" cy="28" r="16" />
+      <path class="hair" d="M33 28 Q33 9 50 9 Q67 9 67 28 Q60 18 50 18 Q40 18 33 28Z" />
+    </g>
+    <g id="him-plain">
+      <rect class="jeans" x="30" y="110" width="17" height="80" rx="3" />
+      <rect class="jeans" x="53" y="110" width="17" height="80" rx="3" />
+      <path class="tee" d="M24 62 Q24 48 40 48 H60 Q76 48 76 62 V114 H24Z" />
+    </g>
+    <g id="sherwani">
+      <path class="maroon" d="M24 62 Q24 48 40 48 H60 Q76 48 76 62 V154 H24Z" />
+      <path class="gold-line" d="M50 48 V154" />
+      <path class="gold" d="M40 48 H60 L50 60Z" />
+      <circle class="gold" cx="50" cy="76" r="2.6" />
+      <circle class="gold" cx="50" cy="94" r="2.6" />
+      <circle class="gold" cx="50" cy="112" r="2.6" />
+      <rect class="gold" x="24" y="147" width="52" height="7" />
+    </g>
+    <g id="him-dressed">
+      <rect class="cream" x="32" y="150" width="14" height="40" rx="3" />
+      <rect class="cream" x="54" y="150" width="14" height="40" rx="3" />
+      <use href="#sherwani" />
+    </g>
+
+    <!-- Her: a little shorter, long hair behind the head. -->
+    <path id="her-hair" class="hair" d="M33 40 Q33 18 50 18 Q67 18 67 40 V74 H33Z" />
+    <g id="her-head">
+      <rect class="skin" x="46" y="48" width="8" height="10" />
+      <circle class="skin" cx="50" cy="38" r="14" />
+      <path class="hair" d="M36 36 Q38 22 50 22 Q62 22 64 36 Q56 28 50 29 Q44 28 36 36Z" />
+    </g>
+    <g id="her-plain">
+      <rect class="jeans" x="33" y="110" width="15" height="80" rx="3" />
+      <rect class="jeans" x="52" y="110" width="15" height="80" rx="3" />
+      <path class="top" d="M30 68 Q30 56 42 56 H58 Q70 56 70 68 V114 H30Z" />
+    </g>
+    <g id="lehenga">
+      <path class="emerald" d="M30 96 H70 L90 190 H10Z" />
+      <path class="gold" d="M12.5 178 H87.5 L90 190 H10Z" />
+      <path class="emerald" d="M30 68 Q30 56 42 56 H58 Q70 56 70 68 V98 H30Z" />
+      <path class="gold" d="M64 56 L70 62 L38 102 L30 98Z" />
+    </g>
+  </defs>
+
+  <!-- Inputs -->
+  <rect class="photo" x="10" y="20" width="100" height="130" rx="8" />
+  <g clip-path="url(#clip-a)">
+    <g transform="translate(26 34) scale(0.68)">
+      <use href="#him-plain" />
+      <use href="#him-head" />
+    </g>
+  </g>
+  <rect class="tile-edge" x="10" y="20" width="100" height="130" rx="8" />
+  <text x="60" y="170">You</text>
+
+  <rect class="photo" x="120" y="20" width="100" height="130" rx="8" />
+  <path class="hanger" d="M170 30 q6 0 6 6 q0 5 -6 7 M150 52 L170 43 L190 52" />
+  <g transform="translate(136 21) scale(0.68)">
+    <use href="#sherwani" />
+  </g>
+  <rect class="tile-edge" x="120" y="20" width="100" height="130" rx="8" />
+  <text x="170" y="170">Your outfit</text>
+
+  <rect class="photo" x="10" y="190" width="100" height="130" rx="8" />
+  <g clip-path="url(#clip-c)">
+    <g transform="translate(26 204) scale(0.68)">
+      <use href="#her-hair" />
+      <use href="#her-plain" />
+      <use href="#her-head" />
+    </g>
+  </g>
+  <rect class="tile-edge" x="10" y="190" width="100" height="130" rx="8" />
+  <text x="60" y="340">Partner</text>
+
+  <rect class="photo" x="120" y="190" width="100" height="130" rx="8" />
+  <path class="hanger" d="M170 198 q6 0 6 6 q0 5 -6 7 M152 220 L170 211 L188 220" />
+  <g transform="translate(139 186) scale(0.62)">
+    <use href="#lehenga" />
+  </g>
+  <rect class="tile-edge" x="120" y="190" width="100" height="130" rx="8" />
+  <text x="170" y="340">Partner's outfit</text>
+
+  <!-- Flow into DuoTry and out to the result -->
+  <path class="flow" d="M226 85 C250 85 250 150 258 158" />
+  <path class="flow" d="M226 255 C250 255 250 180 258 172" />
+  <circle class="node" cx="275" cy="165" r="20" />
+  <path class="spark" d="M275 151 L279 161 L289 165 L279 169 L275 179 L271 169 L261 165 L271 161Z" />
+  <path class="flow" d="M298 165 H318" />
+  <path class="arrowhead" d="M316 158 L328 165 L316 172Z" />
+
+  <!-- Result -->
+  <rect class="photo" x="334" y="20" width="256" height="290" rx="10" />
+  <ellipse class="shadow" cx="408" cy="290" rx="50" ry="7" />
+  <ellipse class="shadow" cx="512" cy="290" rx="58" ry="7" />
+  <g transform="translate(348 58) scale(1.2)">
+    <g class="before"><use href="#him-plain" /></g>
+    <g class="after"><use href="#him-dressed" /></g>
+    <use href="#him-head" />
+  </g>
+  <g transform="translate(452 58) scale(1.2)">
+    <use href="#her-hair" />
+    <g class="before"><use href="#her-plain" /></g>
+    <g class="after"><use href="#lehenga" /></g>
+    <use href="#her-head" />
+  </g>
+  <rect class="frame-edge" x="334" y="20" width="256" height="290" rx="10" />
+  <text class="result-label" x="462" y="338">Together, in one frame</text>
+</svg>
