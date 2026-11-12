@@ -3,7 +3,7 @@ title: 'Two people, one frame: why I built DuoTry'
 description: Virtual try-on has always been a solo act. This is the story of building one for couples, and of the decisions that shaped it, including which image model to trust with two real faces.
 pubDate: 2026-11-11
 tags: [duotry, ai, image-generation, building-in-public]
-draft: true
+draft: false
 ---
 
 Every couple getting ready for an event asks the same question, usually while holding two hangers
