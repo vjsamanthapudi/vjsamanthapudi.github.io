@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" role="img" aria-labelledby="t d">
+  <title id="t">The DuoTry assembly line</title>
+  <desc id="d">Three steps run at the same time: dress you, dress your partner, and estimate your relative heights. Each dressed photo is inspected, with one fix allowed. The two photos are then combined into one scene, inspected again with one recombine allowed, and only then shown as the final look.</desc>
+  <style>
+    :root {
+      --fg: #e6e8ee;
+      --muted: #9aa3b5;
+      --accent: #6ee7b7;
+      --line: #2e3548;
+      --box: #151924;
+      --on-accent: #0f1117;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --fg: #1a1d27;
+        --muted: #5b6475;
+        --accent: #047857;
+        --line: #cfd4de;
+        --box: #ffffff;
+        --on-accent: #ffffff;
+      }
+    }
+    text {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      text-anchor: middle;
+    }
+    .name { font-size: 16px; font-weight: 600; fill: var(--fg); }
+    .sub { font-size: 13px; fill: var(--muted); }
+    .retry { font-size: 13px; fill: var(--accent); }
+    .note { font-size: 13px; fill: var(--muted); font-style: italic; }
+    .box { fill: var(--box); stroke: var(--line); stroke-width: 1.5; }
+    .inspect { fill: var(--box); stroke: var(--accent); stroke-width: 2; }
+    .final { fill: var(--accent); }
+    .final-text { font-size: 16px; font-weight: 600; fill: var(--on-accent); }
+    .wire { fill: none; stroke: var(--muted); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 3 7; animation: flow 1.2s linear infinite; }
+    .head { fill: var(--muted); }
+    @keyframes flow { to { stroke-dashoffset: -20; } }
+    @media (prefers-reduced-motion: reduce) {
+      .wire { animation: none; }
+    }
+  </style>
+
+  <text class="note" x="300" y="18">these three run at the same time</text>
+
+  <!-- Row 1 -->
+  <rect class="box" x="30" y="30" width="170" height="64" rx="8" />
+  <text class="name" x="115" y="58">Dress you</text>
+  <text class="sub" x="115" y="78">edit your own photo</text>
+
+  <rect class="box" x="215" y="30" width="170" height="64" rx="8" />
+  <text class="name" x="300" y="58">Dress partner</text>
+  <text class="sub" x="300" y="78">edit their own photo</text>
+
+  <rect class="box" x="400" y="30" width="170" height="64" rx="8" />
+  <text class="name" x="485" y="58">Estimate heights</text>
+  <text class="sub" x="485" y="78">who is taller, by how much</text>
+
+  <!-- Row 2: inspectors -->
+  <path class="wire" d="M115 98 V120" />
+  <path class="head" d="M109 120 H121 L115 130Z" />
+  <path class="wire" d="M300 98 V120" />
+  <path class="head" d="M294 120 H306 L300 130Z" />
+
+  <rect class="inspect" x="30" y="134" width="170" height="80" rx="8" />
+  <text class="name" x="115" y="160">Inspect</text>
+  <text class="sub" x="115" y="180">same face? right outfit?</text>
+  <text class="retry" x="115" y="200">↻ one fix if it fails</text>
+
+  <rect class="inspect" x="215" y="134" width="170" height="80" rx="8" />
+  <text class="name" x="300" y="160">Inspect</text>
+  <text class="sub" x="300" y="180">same face? right outfit?</text>
+  <text class="retry" x="300" y="200">↻ one fix if it fails</text>
+
+  <!-- Into combine -->
+  <path class="wire" d="M115 218 V246" />
+  <path class="head" d="M109 246 H121 L115 256Z" />
+  <path class="wire" d="M300 218 V246" />
+  <path class="head" d="M294 246 H306 L300 256Z" />
+  <path class="wire" d="M485 98 V246" />
+  <path class="head" d="M479 246 H491 L485 256Z" />
+
+  <rect class="box" x="30" y="260" width="540" height="64" rx="8" />
+  <text class="name" x="300" y="288">Combine</text>
+  <text class="sub" x="300" y="308">two dressed photos become one scene, at believable relative height</text>
+
+  <path class="wire" d="M300 328 V346" />
+  <path class="head" d="M294 346 H306 L300 356Z" />
+
+  <rect class="inspect" x="175" y="360" width="250" height="80" rx="8" />
+  <text class="name" x="300" y="386">Inspect</text>
+  <text class="sub" x="300" y="406">both faces? both outfits?</text>
+  <text class="retry" x="300" y="426">↻ one recombine if it fails</text>
+
+  <path class="wire" d="M300 444 V452" />
+  <path class="head" d="M294 450 H306 L300 460Z" />
+
+  <rect class="final" x="200" y="462" width="200" height="36" rx="18" />
+  <text class="final-text" x="300" y="486">The look you see</text>
+</svg>
